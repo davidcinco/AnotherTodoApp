@@ -8,7 +8,9 @@ from .models import Todo
 
 # Create your views here.
 def index(request):
-    context = {"message": "hello world"}
+    todos = Todo.objects.all()
+
+    context = {"message": "hello world", "tasks": todos}
     return render(request, 'todo/index/index.html', context)
 
 def create(request):

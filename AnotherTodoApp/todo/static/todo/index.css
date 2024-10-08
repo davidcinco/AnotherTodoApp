@@ -1,0 +1,50 @@
+body {
+    width: 100%;
+    height: 100vh;
+    background: rgb(18,0,36);
+    background: -moz-linear-gradient(90deg, rgba(18,0,36,1) 0%, rgba(37,1,74,1) 44%, rgba(77,1,153,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(18,0,36,1) 0%, rgba(37,1,74,1) 44%, rgba(77,1,153,1) 100%);
+    background: linear-gradient(90deg, rgba(18,0,36,1) 0%, rgba(37,1,74,1) 44%, rgba(77,1,153,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#120024",endColorstr="#4d0199",GradientType=1);  
+}
+
+main{
+    position: absolute;
+    top: 10%;
+    width: calc(100% - 30px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    margin-bottom: 1.50rem;
+    font-family: "Nabla", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "EDPT" 100,
+      "EHLT" 12;
+}
+
+form{
+    width: 525px;
+    display: flex;
+    border: 1px solid #8e42a9;
+    box-shadow: 0px 0px 4px 4px #79189c;
+}
+
+div.task-nav{
+    margin: 2rem 0rem;
+    color: white;
+}
+
+div.task-nav ul.ul-task div.div-task {
+    display: flex;
+}
+
+div.task-nav ul.ul-task div.div-task p {
+    padding: 0em 2rem;
+}

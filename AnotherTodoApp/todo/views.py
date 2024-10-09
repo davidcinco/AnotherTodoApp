@@ -19,17 +19,27 @@ def create(request):
         form = TodoForm(request.POST)
         if form.is_valid():
             form.save()
-
     return redirect("todo:index")
     
-        
 def update(request, id):
     return HttpResponse(f"update views from todo - {id}")
 
+def isDone(request, id):
+    task = Todo.objects.get(pk=id)
+    if request.method == "POST":
+        if task.tododone:
+            task.tododone = False
+            task.save()
+        else:
+            task.tododone = True
+            task.save()
+        return redirect("todo:index")
+            
+    return redirect("todo:index")        
+                        
 def delete(request, id):
     task = Todo.objects.get(pk=id)
     if task.DoesNotExist():
         task.delete()
-        
     return redirect("todo:index")
 

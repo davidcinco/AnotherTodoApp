@@ -29,11 +29,15 @@ h1 {
       "EHLT" 12;
 }
 
-form{
+form.formTodo{
     /* width: 525px; */
     display: flex;
     border: 1px solid #8e42a9;
     box-shadow: 0px 0px 4px 4px #79189c;
+}
+
+input.checkbox-done{
+    border-radius:  50%;
 }
 
 input.description {
@@ -56,9 +60,11 @@ div.task-nav{
     color: white;
 }
 
+
 div.task-nav ul.ul-task div.div-task {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding-bottom: 6px;
     border-bottom: 2px solid #4c0964;
     /* background-color: #552764; */
@@ -69,6 +75,25 @@ div.task-nav ul.ul-task div.div-task p {
     margin: 0;
     font-size: 1rem;
 }
+
+form.formdescription{
+    display: flex;
+}
+
+button.btn-description{
+    background-color: transparent;
+    border: none;
+}
+
+button.btn-description p.p-task-unchecked{
+    color: white;
+}
+
+button.btn-description p.p-task-checked{
+    color: rgb(15, 209, 15);
+    text-decoration-line: line-through;
+}
+
 
 button.btn-task-edit, button.btn-task-delete{
     width: 70px;
@@ -95,4 +120,45 @@ button.btn-task-edit:hover, button.btn-task-delete:hover, input.addbtn:hover{
     border: 1px solid #8e42a9;
     box-shadow: 0px 0px 2px 2px #9b34c1;
     color: rgb(243, 0, 215);
+}
+
+/* POPUP */
+div.modalbg{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.385);
+    z-index: 1;
+    visibility: hidden;
+    
+}
+div.modaltodo{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: #4b2a56;
+    border-radius: 12px;
+    width: 350px;
+    height: 200px;
+    padding: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 20%;
+}
+
+div.modaltodo h5.modal-title {
+    color: white;
+}
+
+div.modaltodo input.tododescription{
+    width: 100%;
+    font-size: 1.25rem;
+    margin: 1.5em 0em;
+}
+
+div.modal-footer > *{
+    margin: 0em .55em;
+    font-size: 1.15rem;
 }

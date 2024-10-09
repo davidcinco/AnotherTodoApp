@@ -15,27 +15,63 @@
 <body>
     <main>
         <h1>AnotherTodoApp</h1>
-        <form action="{% url 'create' %}" method="post">
+        <form action="{% url 'todo:create' %}" method="post" enctype="multipart/form-data" class="formTodo">
             {% csrf_token %}
             <fieldset>
-                <input type="text" name="description" class="description" id="description" placeholder="Add new Task...">
+                <input type="text" name="tododescription" class="description" id="description" placeholder="Add new Task...">
             </fieldset>        
     
             <input type="submit" value="Add" class="addbtn" id="addbtn">
         </form>
         
-
         <div class="task-nav" id="task-nav">
             <ul class="ul-task">
                 {% for task in tasks %}
                     <div class="div-task">
-                        <p class="p-task">{{ task.tododescription }}</p>
-                        <input type="button" value="edit" class="btn-task-edit">
-                        <input type="button" value="delete" class="btn-task-delete">
+                        {% comment %} description {% endcomment %}
+                        <form action="{% url "todo:isdone" id=task.todoid %}" method="post" class="formdescription">
+                            {% csrf_token %}
+                            {% if not task.tododone %}
+                                <button type="submit" class="btn-description">
+                                    <p class="p-task p-task-unchecked">{{ task.tododescription }}</p>
+                                </button>
+                                {% else %}
+                                <button type="submit" class="btn-description">
+                                    <p class="p-task p-task-checked">{{ task.tododescription }}</p>
+                                </button>
+                            {% endif %}
+                        </form>
+                        
+                        <div class="div-task-options">
+                            {% comment %} delete button {% endcomment %}
+                            <form action="{% url "todo:delete" id=task.todoid %}" method="post">
+                                {% csrf_token %}
+                                <button class="btn-task-delete">Delete</button>
+                            </form>
+                        </div>
                     </div>                
                 {% endfor %}
             </ul>
         </div>
     </main>
+    <div class="modalbg" id="modalbg">
+        <div class="modaltodo">
+            <h5 class="modal-title">Edit Todo Description</h5>
+            <div class="modal-body">
+              <input type="text" name="tododescription" class="tododescription" id="tododescription">
+            </div>
+            <div class="modal-footer">
+                {% comment %} <form action="{% url "todo:update" id=task.todoid %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn-task-edit">Save</button>
+                </form> {% endcomment %}
+
+              <button type="button" class="btn btn-primary" id="modalSave">Save</button>
+              <button type="button" class="btn btn-danger" id="modalClose">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{% static 'todo/index.js' %}"></script>
 </body>
 </html>

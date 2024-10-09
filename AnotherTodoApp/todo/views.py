@@ -1,24 +1,45 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
 from django.template import loader
 from django.shortcuts import render
 
 from .models import Todo
+from .forms import TodoForm
 
 # Create your views here.
 def index(request):
     todos = Todo.objects.all()
-
-    context = {"message": "hello world", "tasks": todos}
+    context = {"tasks": todos}
     return render(request, 'todo/index/index.html', context)
 
 def create(request):
-    return HttpResponse("create views from todo")
-        
+    form = TodoForm
+    if request.method == "POST":            
+        form = TodoForm(request.POST)
+        if form.is_valid():
+            form.save()
+    return redirect("todo:index")
+    
 def update(request, id):
     return HttpResponse(f"update views from todo - {id}")
 
+def isDone(request, id):
+    task = Todo.objects.get(pk=id)
+    if request.method == "POST":
+        if task.tododone:
+            task.tododone = False
+            task.save()
+        else:
+            task.tododone = True
+            task.save()
+        return redirect("todo:index")
+            
+    return redirect("todo:index")        
+                        
 def delete(request, id):
-    return HttpResponse(f"delete views from todo - {id}")
+    task = Todo.objects.get(pk=id)
+    if task.DoesNotExist():
+        task.delete()
+    return redirect("todo:index")
 

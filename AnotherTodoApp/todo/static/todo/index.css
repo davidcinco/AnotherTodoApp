@@ -30,12 +30,27 @@ h1 {
 }
 
 form{
-    width: 525px;
+    /* width: 525px; */
     display: flex;
     border: 1px solid #8e42a9;
     box-shadow: 0px 0px 4px 4px #79189c;
 }
 
+input.description {
+    width: 325px;
+    font-size: 1.25rem;
+}
+
+input.addbtn {
+    margin-left: .25em;
+    padding: 0em 1em;
+    border: 1px solid #8e42a9;
+    box-shadow: 0px 0px 3px 3px #79189c;
+    background-color: transparent;
+    color: white;
+}
+
+/* TASK SECTION */
 div.task-nav{
     margin: 2rem 0rem;
     color: white;
@@ -43,8 +58,41 @@ div.task-nav{
 
 div.task-nav ul.ul-task div.div-task {
     display: flex;
+    align-items: center;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #4c0964;
+    /* background-color: #552764; */
 }
 
 div.task-nav ul.ul-task div.div-task p {
     padding: 0em 2rem;
+    margin: 0;
+    font-size: 1rem;
+}
+
+button.btn-task-edit, button.btn-task-delete{
+    width: 70px;
+    padding: 0.45em;
+    margin: 0em .25em;
+    border: none;
+    color: white;
+    border: 1px solid #8e42a9;
+    box-shadow: 0px 0px 2px 2px #79189c;
+}
+
+button.btn-task-edit {
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+button.btn-task-delete {
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+button.btn-task-edit:hover, button.btn-task-delete:hover, input.addbtn:hover{
+    transition: .2s;
+    border: 1px solid #8e42a9;
+    box-shadow: 0px 0px 2px 2px #9b34c1;
+    color: rgb(243, 0, 215);
 }

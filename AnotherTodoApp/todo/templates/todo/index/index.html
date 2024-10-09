@@ -15,23 +15,28 @@
 <body>
     <main>
         <h1>AnotherTodoApp</h1>
-        <form action="{% url 'create' %}" method="post">
+        <form action="{% url 'todo:create' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset>
-                <input type="text" name="description" class="description" id="description" placeholder="Add new Task...">
+                <input type="text" name="tododescription" class="description" id="description" placeholder="Add new Task...">
             </fieldset>        
     
             <input type="submit" value="Add" class="addbtn" id="addbtn">
         </form>
         
-
         <div class="task-nav" id="task-nav">
             <ul class="ul-task">
                 {% for task in tasks %}
                     <div class="div-task">
                         <p class="p-task">{{ task.tododescription }}</p>
-                        <input type="button" value="edit" class="btn-task-edit">
-                        <input type="button" value="delete" class="btn-task-delete">
+                        
+                        <a href="{% url "todo:update" id=task.todoid %}" class="a-task-edit">
+                            <button class="btn-task-edit">Edit</button>
+                        </a>
+                        
+                        <a href="{% url "todo:delete" id=task.todoid %}" class="a-task-delete">
+                            <button class="btn-task-delete">Delete</button>
+                        </a>
                     </div>                
                 {% endfor %}
             </ul>
